@@ -1,0 +1,7 @@
+opencv-python
+numpy
+tqdm
+librosa
+numba
+insightface==0.2.1
+onnxruntime

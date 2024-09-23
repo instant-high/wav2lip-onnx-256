@@ -1,0 +1,29 @@
+conda create -n wav2lip_onnx python=3.7
+conda activate wav2lip_onnx
+cd c:\tutorial\wav2lip_onnx
+pip install -r requirements.txt
+
+for use with Nvidia GPU:
+conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0   (version depending on your graphic card model)
+pip uninstall onnxruntime
+pip install onnxruntime-gpu
+
+maybe it's neccessary to also
+pip install opencv-python
+
+---------------------------
+if you get some "onnx 1.9 providers" error:
+
+Edit this file:
+e.g. File "C:\Users\.conda\envs\ENVname\lib\site-packages\insightface\model_zoo\model_zoo.py"
+line 23, in get_model
+
+change:
+session = onnxruntime.InferenceSession(self.onnx_file, None)
+
+to:
+session = onnxruntime.InferenceSession(self.onnx_file, providers=['CUDAExecutionProvider', 'CPUExecutionProvider']
+---------------------------
+
+inference:
+python -W ignore inference_onnxModel.py --checkpoint_path "checkpoints\wav2lip_gan.onnx" --face "D:\some.mp4" --audio "D:\some.wav" --outfile "D:\output.mp4" --nosmooth  --pads 0 10 0 0 --fps 29.97
