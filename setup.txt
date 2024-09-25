@@ -26,4 +26,4 @@ session = onnxruntime.InferenceSession(self.onnx_file, providers=['CUDAExecution
 ---------------------------
 
 inference:
-python -W ignore inference_onnxModel.py --checkpoint_path "checkpoints\wav2lip_gan.onnx" --face "D:\some.mp4" --audio "D:\some.wav" --outfile "D:\output.mp4" --nosmooth  --pads 0 10 0 0 --fps 29.97
+python -W ignore inference_onnxModel.py --checkpoint_path "checkpoints\wav2lip_256.onnx" --face "D:\some.mp4" --audio "D:\some.wav" --outfile "D:\output.mp4" --nosmooth  --pads 0 10 0 0 --fps 29.97
